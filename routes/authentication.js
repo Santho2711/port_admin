@@ -7,25 +7,22 @@ const session = require("express-session");
 const userCollection = require("../models/userModel");
 
 route.get("/", (req, res) => {
-  console.log(req.session.isAuth, "seessa authentic");
-  if(req.session.isAuth){
+  if (req.session.isAuth) {
     res.redirect("/dashboard");
-  }
-  else {
-    res.render(path.join(rootPath, "views", "login"),{
-      layout : 'authIndex'
+  } else {
+    res.render(path.join(rootPath, "views", "login"), {
+      layout: "authIndex",
     });
   }
 });
 
 route.post("/login", async (req, res) => {
-  const {email,password} = req.body;
-  const user = await userCollection.findOne({email:email})
-  if(user && user.password == password){
-    req.session.isAuth = true
+  const { email, password } = req.body;
+  const user = await userCollection.findOne({ email: email });
+  if (user && user.password == password) {
+    req.session.isAuth = true;
     res.redirect("/dashboard");
-  }
-  else {
+  } else {
     res.redirect("/");
   }
 });
@@ -42,7 +39,6 @@ route.get("/register", (req, res) => {
     layout: "authIndex",
   });
 });
-
 
 route.post("/register", async (req, res) => {
   const toUpload = {

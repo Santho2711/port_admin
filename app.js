@@ -10,14 +10,14 @@ const aboutRoute = require("./routes/about");
 const contactRoute = require("./routes/contacts");
 const backgroundRoute = require("./routes/background");
 const skillsRoute = require("./routes/skills");
-const projectsRoute = require('./routes/projects')
+const projectsRoute = require("./routes/projects");
 const usersRoute = require("./routes/users");
 const apiRoute = require("./controller/Admin_Api");
 const handleBarHelpers = require("./utils/handleBarHelpers");
 const session = require("express-session");
 const isAuth = require("./middlewares/isAuth");
-const bodyParser = require('body-parser')
-const cors = require('cors')
+const bodyParser = require("body-parser");
+const cors = require("cors");
 // const skillCollection = require("./models/skillModel");
 const reachesCollection = require("./models/contactModel");
 const skillCollection = require("./models/skillModel");
@@ -42,9 +42,11 @@ app.set("views", path.join(rootPath, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-app.use(express.urlencoded({
-  extended:true
-}));
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 app.use(
   cors({
     origin: true,
@@ -64,32 +66,31 @@ app.use(
   })
 );
 
-app.use("/home",isAuth, homeRoute);
-app.use("/about",isAuth, aboutRoute);
-app.use("/background",isAuth, backgroundRoute);
-app.use("/skills",isAuth, skillsRoute);
-app.use("/projects",isAuth, projectsRoute);
-app.use("/contacts",isAuth, contactRoute);
-app.use("/users",isAuth, usersRoute);
-app.use('/Admin_api',apiRoute)
+app.use("/home", isAuth, homeRoute);
+app.use("/about", isAuth, aboutRoute);
+app.use("/background", isAuth, backgroundRoute);
+app.use("/skills", isAuth, skillsRoute);
+app.use("/projects", isAuth, projectsRoute);
+app.use("/contacts", isAuth, contactRoute);
+app.use("/users", isAuth, usersRoute);
+app.use("/Admin_api", apiRoute);
 
-
-app.get("/dashboard", isAuth,async (req, res) => {
-  const skillCount = await skillCollection.find() ?? [];
-  const rolecount = await homeCollection.findOne({}).lean() ?? [];
-  const contacts = await reachesCollection.find({}).lean() ?? []
-  const projects = await projectCollection.find() ?? []
+app.get("/dashboard", isAuth, async (req, res) => {
+  const skillCount = (await skillCollection.find()) ?? [];
+  const rolecount = (await homeCollection.findOne({}).lean()) ?? [];
+  const contacts = (await reachesCollection.find({}).lean()) ?? [];
+  const projects = (await projectCollection.find()) ?? [];
   res.render("dashboard", {
-    roleCount: rolecount?.roles?.length,
+    roleCount: rolecount?.roles?.length ?? 0,
     skillcount: skillCount.length,
     projectcount: projects.length,
-    contactCount : contacts?.length,
-    datas:contacts
+    contactCount: contacts?.length,
+    datas: contacts,
   });
 });
-app.use("/",authRoute)
+app.use("/", authRoute);
 
-app.use((req,res) => {
-  res.send('Not found').status(404)
-})
+app.use((req, res) => {
+  res.send("Not found").status(404);
+});
 app.listen(process.env.PORT);
