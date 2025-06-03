@@ -1,0 +1,93 @@
+<div class="container-fluid">
+    <div class="row col-12">
+        <div class="page-titles col-12">
+            <h4>{{title}}</h4>
+        </div>
+<div class="row col-12">
+    <div class="card col-12">
+        <div class="card-body">
+            <form action="home/submit" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <h4>Name</h4>
+                    <input class="form-control form-control-lg" type="text" name="name" placeholder="Type your name"
+                        value="{{name}}">
+                </div>
+                <div class="d-flex mt-4 justify-content-between">
+                    <h4>Roles</h4>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addrole">Add New
+                        Role</button>
+
+                </div>
+
+                {{#if roles}}
+                <table class="table verticle-middle table-responsive-sm text-muted table-striped">
+                    <thead>
+                        <tr>
+                            <th class="col-11">Role</th>
+                            <th class="col-1">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each roles}}
+                        <tr>
+                            <td>{{this}}</td>
+                            <td>
+                                <span>
+                                    {{!-- <a href="home/editRole/{{@index}}" data-id={{@index}} class="mr-4  edit-link "
+                                        data-toggle="tooltip" data-placement="top" title="Edit"><i
+                                            class="fa fa-pencil"></i>
+                                    </a> --}}
+                                    <a href="home/deleteRole/{{@index}}" data-toggle="tooltip" data-placement="top" target="_self"
+                                        title="Close"><i class="fa fa-close color-danger"></i></a>
+                                </span>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+                {{/if}}
+
+                <div class="form-group mt-4">
+                    <h4>Resume</h4>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="resume" accept="application/pdf"
+                            value="{{resume}}">
+                        <label class="custom-file-label">{{#if resume}} {{resume}} {{else}} Upload your resume
+                            {{/if}}</label>
+                    </div>
+                    {{#if resume}}
+                    <a href="{{baseurl}}/uploads/{{resume}}" target="_blank" class="btn btn-dark mt-3 ml-auto">View your Resume</a>
+                    {{/if}}
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{{!-- role add modal --}}
+<div class="modal fade" id="addrole">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="home/addRole" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add a New Role</h5>
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" type="text" name="role"
+                            placeholder="Type your role">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    </div>

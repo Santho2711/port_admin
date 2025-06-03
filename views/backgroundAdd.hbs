@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <div class="row col-12">
+        <div class="page-titles col-12">
+            <h4>{{title}}</h4>
+        </div>
+    </div>
+    <div class="row  col-12">
+        <div class="card col-12">
+            <div class="card-body">
+                <form action="/background/add" method="post">
+                    <div class="form-group">
+                        <h4>Designation</h4>
+                        <input class="form-control form-control-lg" type="text" name="designation"
+                            placeholder="Type the page title" value="{{datas.designation}}">
+                    </div>
+
+                    <div class="form-group">
+                        <h4>Organisation</h4>
+                        <input class="form-control form-control-lg" type="text" name="organisation"
+                            placeholder="Type the page title" value="{{datas.organisation}}">
+                    </div>
+                    <div class="form-group">
+                        <h4>Duration</h4>
+                        <div class="d-flex align-items-center">
+                            <input name="from_date" class="datepicker-default col-5-md form-control" id="datepicker"
+                                type="date" value="{{datas.fromDate}}">
+                            <b class="col-2 text-dark text-center">To</b>
+                            <input name="to_date" class="datepicker-default col-5-md form-control" id="datepicker"
+                                type="date" value="{{datas.toDate}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h4>Description</h4>
+                        <textarea name="description" id="" class="form-control"
+                            placeholder="Type the paragraph">{{datas.description}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <h4>Background Type</h4>
+                        <label class="radio-inline mr-2 text-dark">
+                            <input type="radio" name="backgroundtype" value="1"  {{#if (eq datas.backgroundType "1")}}checked{{else}}{{#unless datas.backgroundType}}checked{{/unless}}{{/if}}> Work History</label>
+                        <label class="radio-inline mr-2 text-dark">
+                            <input type="radio" name="backgroundtype" value="2" {{#if (eq datas.backgroundType "2")}}checked{{/if}}> Education</label>
+                    </div>
+                    <input type="hidden" name="id" value="{{datas._id}}">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</div>
+

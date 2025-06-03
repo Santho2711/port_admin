@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row col-12">
+        <div class="page-titles col-12">
+            <h4>{{title}}</h4>
+        </div>
+    </div>
+    <div class="row col-12">
+        <div class="card col-12">
+            <div class="card-body">
+                <form action="/projects/add" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <h4>project name</h4>
+                        <input class="form-control form-control-lg" type="text" name="project_name"
+                            placeholder="Type the project name" value="{{datas.projectName}}">
+                    </div>
+                    <div class="form-group">
+                        <h4>project URL</h4>
+                        <input class="form-control form-control-lg" type="text" name="project_url" placeholder="Enter the url "
+                            value="{{datas.projectUrl}}">
+                    </div>
+                    <div class="form-group mt-4">
+                        <h4>Banner image</h4>
+                        {{#if datas.image}}
+                        <div class="mb-4">
+                            <img src="{{baseurl}}/uploads/{{datas.image}}" class="img-fluid h-100">
+                        </div>
+                        {{/if}}
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="project_image"
+                                accept="image/png, image/gif, image/jpeg" value="{{datas.image}}">
+                            <label class="custom-file-label">{{#if datas.image}} {{datas.image}}
+                                {{else}}Upload the image
+                                {{/if}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h4>About the project</h4>
+                        <textarea name="project_description" id="" class="form-control"
+                            placeholder="Type the paragraph">{{datas.description}}</textarea>
+                    </div>
+                    <input type="hidden" name="id" value="{{datas._id}}">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

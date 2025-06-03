@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="row col-12">
+        <div class="page-titles col-12">
+            <h4>{{title}}</h4>
+        </div>
+    </div>
+    <div class="row p-0 col-12">
+        {{#if datas}}
+            {{#each datas}}
+                <div class="card col-12">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                        <div class="lft">
+                            <h3>{{this.designation}}</h3>
+                            <h5 class="card-title">{{this.organisation}}</h5>
+                        </div>
+                        <b>{{this.fromDate}} - {{this.toDate}}</b>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text text-dark">{{this.description}}</p>
+                    </div>
+                    <div class="card-footer d-sm-flex justify-content-end">
+                        <a href="/background/delete/{{this._id}}" id="toastr-success-top-right" class="btn btn-danger mr-3">Delete</a>
+                        <a href="/background/edit/{{this._id}}" class="btn btn-primary">Edit</a>
+                    </div>
+                </div>
+            {{/each}}
+        {{/if}}
+    </div>
+</div>

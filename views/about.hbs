@@ -1,0 +1,132 @@
+<div class="container-fluid">
+    <div class="row col-12">
+        <div class="page-titles col-12">
+            <h4>{{title}}</h4>
+        </div>
+    </div>
+    <div class="row col-12">
+        <div class="card col-12">
+            <div class="card-body">
+                <form action="/about/submit" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <h4>Page title</h4>
+                        <input class="form-control form-control-lg" type="text" name="pagetitle"
+                            placeholder="Type the page title" value="{{aboutDatas.pageTitle}}">
+                    </div>
+                    <div class="form-group">
+                        <h4>Sub paragraph</h4>
+                        <textarea name="subparagraph" id="" class="form-control"
+                            placeholder="Type the paragraph">{{aboutDatas.subparagraph}}</textarea>
+                    </div>
+                    <div class="form-group mt-4">
+                        <h4>Left Image</h4>
+                        {{#if aboutDatas.leftimage}}
+                        <div class="mb-4">
+                            <img src="{{baseurl}}/uploads/{{aboutDatas.leftimage}}" class="img-fluid h-100">
+                        </div>
+                        {{/if}}
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="image"
+                                accept="image/png, image/gif, image/jpeg" value="{{aboutDatas.leftimage}}">
+                            <label class="custom-file-label">{{#if aboutDatas.leftimage}} {{aboutDatas.leftimage}}
+                                {{else}}Upload the image
+                                {{/if}}</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h4>Title 1</h4>
+                        <input class="form-control form-control-lg" type="text" name="title_one"
+                            placeholder="Type the title" value="{{aboutDatas.title_one}}">
+                    </div>
+                    <div class="form-group">
+                        <h4>Title 2</h4>
+                        <input class="form-control form-control-lg" type="text" name="title_two"
+                            placeholder="Type the title" value="{{aboutDatas.title_two}}">
+                    </div>
+                    <div class="form-group">
+                        <h4>Title 3</h4>
+                        <input class="form-control form-control-lg" type="text" name="title_three"
+                            placeholder="Type the title" value="{{aboutDatas.title_three}}">
+                    </div>
+                    <div class="form-group">
+                        <h4>paragraph 1</h4>
+                        <textarea name="paragraph_one" id="" class="form-control"
+                            placeholder="Type the paragraph">{{aboutDatas.paragraph_one}}</textarea>
+                        {{!-- <input class="form-control form-control-lg" type="text" name="paragraph_one"
+                            placeholder="Type the page title" value="{{name}}"> --}}
+                    </div>
+                    <div class="form-group">
+                        <h4>paragraph 2</h4>
+                        <textarea name="paragraph_two" id="" class="form-control"
+                            placeholder="Type the paragraph">{{aboutDatas.paragraph_two}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <h4>paragraph 3</h4>
+                        <textarea name="paragraph_three" id="" class="form-control"
+                            placeholder="Type the paragraph">{{aboutDatas.paragraph_three}}</textarea>
+                    </div>
+                    <div class="d-flex mt-4 justify-content-between">
+                        <h4>Keys</h4>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addkey">Add New
+                            Key</button>
+
+                    </div>
+                    {{#if aboutDatas.keys}}
+                    <table class="table verticle-middle table-responsive-sm text-muted table-striped">
+                        <thead>
+                            <tr>
+                                <th class="col-11">Key</th>
+                                <th class="col-1">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each aboutDatas.keys}}
+                            <tr>
+                                <td>{{this}}</td>
+                                <td>
+                                    <span>
+                                        {{!-- <a href="home/editRole/{{@index}}" data-id={{@index}}
+                                            class="mr-4  edit-link " data-toggle="tooltip" data-placement="top"
+                                            title="Edit"><i class="fa fa-pencil"></i>
+                                        </a> --}}
+                                        <a href="about/deleteKey/{{@index}}" data-toggle="tooltip" data-placement="top"
+                                            target="_self" title="Close"><i class="fa fa-close color-danger"></i></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                    {{/if}}
+                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{!-- role add modal --}}
+    <div class="modal fade" id="addkey">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="about/addkey" method="post">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add a New Key</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input class="form-control form-control-lg" type="text" name="key"
+                                placeholder="Type your role">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
