@@ -6,6 +6,7 @@ const aboutDatas = require("../models/aboutModel");
 const backgroundDatas = require("../models/backgroundModel");
 const skillDatas = require("../models/skillModel");
 const contactCollection = require("../models/contactModel");
+const projectCollection = require("../models/projectsModel");
 const multer = require("multer");
 require("dotenv").config();
 
@@ -126,6 +127,37 @@ route.post("/skills", async (req, res) => {
     const toSend = {
       pageTitle: datas?.pageTitle,
       skills,
+    };
+    res.json({
+      status: "success",
+      data: toSend,
+    });
+  } else {
+    res.json({
+      status: "success",
+      message: "datas not found",
+    });
+  }
+});
+
+route.post("/projects", async (req, res) => {
+  const datas = await projectCollection.find({});
+
+  const projects = [];
+
+  if (datas && datas.length > 0) {
+    datas.forEach((item) =>
+      projects.push({
+        name: item?.projectName,
+        url: item?.projectUrl,
+        image: item?.image && `${publicUrl + "/uploads/" + item?.image}`,
+        description: item?.description,
+      })
+    );
+  }
+  if (projects) {
+    const toSend = {
+      projects,
     };
     res.json({
       status: "success",
