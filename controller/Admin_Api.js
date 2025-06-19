@@ -7,6 +7,7 @@ const backgroundDatas = require("../models/backgroundModel");
 const skillDatas = require("../models/skillModel");
 const contactCollection = require("../models/contactModel");
 const projectCollection = require("../models/projectsModel");
+const contactContentCollection = require("../models/contactContentModel");
 const multer = require("multer");
 require("dotenv").config();
 
@@ -170,6 +171,27 @@ route.post("/projects", async (req, res) => {
     });
   }
 });
+
+route.post('/contact',async(req,res) => {
+ const datas = await contactContentCollection.findOne({}).lean()
+ if (datas) {
+   const toSend = {
+     email:datas?.email,
+     mobile:datas?.mobile,
+     address:datas?.address,
+   };
+   res.json({
+     status: "success",
+     data: toSend,
+   });
+ } else {
+   res.json({
+     status: "success",
+     message: "datas not found",
+   });
+ }
+
+})
 
 
 
