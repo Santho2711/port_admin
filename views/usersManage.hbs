@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <div class="row col-12">
+        <div class="page-titles col-12">
+            <h4>{{title}}</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row col-12">
+            {{#if datas}}
+            <div class="card col-12">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="example" class="display" style="min-width: 845px">
+                            <thead>
+                                <tr>
+                                    <th>User name</th>
+                                    <th>E-mail</th>
+                                    <th>Password</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each datas}}
+                                <tr>
+                                    <td class="text-dark">{{this.username}}</td>
+                                    <td class="text-dark">{{this.email}}</td>
+                                    <td class="text-dark">{{this.password}}</td>
+                                    <td class="text-dark"><a href="/users/edit/{{this._id}}">Edit</a></td>
+                                    <td class="text-dark"><a href="/users/delete/{{this._id}}">Delete</a></td>
+                                </tr>
+                                {{/each}}
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</div>

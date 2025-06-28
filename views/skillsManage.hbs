@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="row col-12">
+        <div class="page-titles col-12">
+            <h4>{{title}}</h4>
+        </div>
+    </div>
+    <div class="row col-12">
+        {{#if datas}}
+        {{#each datas}}
+        <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
+            <div class="card mb-3">
+                <img class="card-img-top " style="height:250px;object-fit:contain;" src="{{baseurl}}/uploads/{{this.image}}"
+                    alt="Card image cap">
+                <div class="card-header">
+                    <h5 class="card-title">{{this.skill}}</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{this.description}}</p>
+                </div>
+                <div class="card-footer d-sm-flex justify-content-end">
+                    <a href="/skills/delete/{{this._id}}" id="toastr-success-top-right" class="btn btn-danger mr-3">Delete</a>
+                    <a href="/skills/edit/{{this._id}}" class="btn btn-primary">Edit</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        {{/if}}
+    </div>
+</div>

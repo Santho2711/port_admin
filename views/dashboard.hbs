@@ -1,0 +1,90 @@
+<div class="container-fluid">
+    <div class="row col-12 ">
+        <div class="page-titles col-12">
+            <h4>Dashboard</h4>
+        </div>
+    </div>
+    <div class="row col-12 ">
+        <div class="card col-12">
+            <div class="card-body">
+                <div class="row col-12">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card shadow">
+                            <div class="stat-widget-two card-body">
+                                <div class="stat-content">
+                                    <div class="stat-text">Key roles</div>
+                                    <div class="stat-digit">{{roleCount}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card shadow">
+                            <div class="stat-widget-two card-body">
+                                <div class="stat-content">
+                                    <div class="stat-text">Skills</div>
+                                    <div class="stat-digit">{{skillcount}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card shadow">
+                            <div class="stat-widget-two card-body">
+                                <div class="stat-content">
+                                    <div class="stat-text">Projects</div>
+                                    <div class="stat-digit">{{projectcount}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card shadow">
+                            <div class="stat-widget-two card-body">
+                                <div class="stat-content">
+                                    <div class="stat-text">Contacts reached</div>
+                                    <div class="stat-digit">{{contactCount}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /# card -->
+                    </div>
+                    <!-- /# column -->
+                </div>
+                <div class="row col-12">
+                    {{#if datas}}
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example" class="display" style="min-width: 845px">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-2">Name</th>
+                                                <th class="col-2">E-mail</th>
+                                                <th class="col-1">Mobile</th>
+                                                <th class="col-2">Purpose</th>
+                                                <th class="col-5">Description</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each datas}}
+                                            <tr>
+                                                <td class="text-dark">{{this.name}}</td>
+                                                <td class="text-dark">{{this.email}}</td>
+                                                <td class="text-dark">{{this.mobile}}</td>
+                                                <td class="text-dark">{{this.purpose}}</td>
+                                                <td class="text-dark">{{this.message}}</td>
+                                            </tr>
+                                            {{/each}}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="row col-12">
+        <div class="page-titles col-12">
+            <h4>{{title}}</h4>
+        </div>
+
+    </div>
+        <div class="row">
+            <div class="card col-12">
+                <div class="card-body">
+                    <form action="/users/add" method="post">
+                        <div class="form-group">
+                            <h4>User name</h4>
+                            <input class="form-control form-control-lg" type="text" name="user_name" placeholder="user name" value="{{datas.username}}"
+                                >
+                        </div>
+                        <div class="form-group">
+                            <h4>E-mail</h4>
+                            <input class="form-control form-control-lg" type="text" name="user_mail" placeholder="user email" value="{{datas.email}}"
+                                >
+                        </div>
+                        <div class="form-group">
+                            <h4>Password</h4>
+                            <input class="form-control form-control-lg" type="password" name="user_password" placeholder="password" value="{{datas.password}}"
+                                >
+                        </div>
+                        <input type="hidden" name="id" value="{{datas._id}}">
+                        <button type="submit" class="btn btn-primary">Add user</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>
